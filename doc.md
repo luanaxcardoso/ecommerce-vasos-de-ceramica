@@ -1,52 +1,24 @@
-1-Instalar virtualenv
-```
-pip install virtualenv
-```	
+1-Instalar virtualenv -> pip install virtualenv
 
-2- Criar ambiente virtual
-```
-python -m venv .venv
-```	
+2- Criar ambiente virtual -> python -m venv .venv
 
-3- Ativar ambiente virtual
-```
-.\.venv\Scripts\Activate
-```
-Rodar o comando para instalar as dependências com ele ativo
-```
-pip install -r requirements.txt
-```
-Ou instalar manualmente
+3- Ativar ambiente virtual -> .\.venv\Scripts\Activate
 
-* Django e Bootstrap
-```
-pip install django
+4- Instalar Django -> pip install django e pip install django-bootstrap-v5 com venv ativado
+(adicionar 'bootstrap5' em settings.py)
 
-pip install django-bootstrap-v5
-```
-6- Sempre que instalar algum pacote novo, atualizar o arquivo requirements.txt com o comando:
-```
-pip freeze > requirements.txt
-```
-7- Criar projeto
+5- Criar projeto -> django-admin startproject setup .
 
-django-admin startproject setup .
+6- criar aplicativo -> python manage.py startapp nomeapp
 
-8- Rodar o projeto
-python manage.py runserver
-http://127.0.0.1:8000/
+(adiconar app em settings.py)
 
-9- criar aplicativo
+7- Rodar o projeto -> python manage.py runserver
 
-python manage.py startapp projeto
+8- Criar super usuário -> python manage.py createsuperuser
 
+9 - Criar Tabela de banco de dados, rodar:
 
-
-Views 
-criar templates em meuprojeto 
-
-pip install django-bootstrap-v5
-
-## Criar
-Tabela de banco de dados
 python manage.py makemigrations
+
+python manage.py migrate

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Produtos Artesanais</h1>
+            <p>Seja bem-vindo ao Ecommerce - Vasinhos de Cerâmica</p>
+            <ul class="list-group">
+                {% for produto in produtos %}
+                <li class="list-group-item d-flex align-items-center">
+                    <div>
+                        {{ produto.nome_produto }}
+                    </div>
+                    <div class="ms-auto">
+                        <img src="{{ produto.imagem.url }}" alt="" style="max-width: 200px;">
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Adicionar Produto</h2>
+            <a href="{% url 'projeto:pedido_order' %}" class="btn btn-primary">Fazer Pedido</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
