@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+            <section class="galeria" style="margin-left: 5em">
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        {% for field in form.visible_fields %}
+                            <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
+                                <label for="{{ form.id_for_label }}" class="col-12 col-lg-12" style="color: aliceblue; margin-bottom: 5px;">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12 col-lg-12">
+                        <button type="submit" class="btn btn-primary col-12" style="padding: top 5px;">Entrar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-RXe2jc5NzZ4vscy4pF4iV3wksqmLzEDK9KyhRYBma8Qh3gx2z2g/4cYU8j9Y54K3" crossorigin="anonymous"></script>
+</body>
+
+{% endblock %}

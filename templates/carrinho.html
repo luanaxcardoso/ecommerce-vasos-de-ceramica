@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Carrinho de Compras
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Carrinho de Compras</h1>
+    <div class="row justify-content-center">
+        {% if carrinho %}
+            <div class="col-md-8">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Preço Unitário</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itens_carrinho %}
+                            <tr>
+                                <td>{{ item.produto.nome_produto }}</td>
+                                <td>{{ item.quantidade }}</td>
+                                <td>R$ {{ item.preco }}</td>
+                                <td>R$ {{ item.subtotal }}</td>
+                                <td>
+                                    <a href="{% url 'remover_item_carrinho' item.id %}" class="btn btn-sm btn-danger">Remover</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><strong>Total:</strong></td>
+                            <td>R$ {{ total_carrinho }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <a href="{% url 'limpar_carrinho' %}" class="btn btn-danger">Limpar Carrinho</a>
+                    <a href="{% url 'finalizar_compra' %}" class="btn btn-primary">Finalizar Compra</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-md-8">
+                <p>O seu carrinho está vazio.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
