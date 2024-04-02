@@ -10,28 +10,86 @@
     {% bootstrap_css %}
 </head>
 <body>
-    <div class="container mt-4 text-center">
-        <h1 class="display-4">Ecommerce -🍃 Vasos de Cerâmica 🍃</h1>
+    
+<div class="container mt-3">
+    <div id="buscar">
+        <form class="d-flex justify-content-center" id="search-form">
+            <input class="form-control me-2" type="search" id="search-input" placeholder="Buscar"
+                aria-label="Search">
+                
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+       
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Home</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sobre">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contato">Contato</a>
-                    </li>
-                </ul>
+    <div class="d-flex align-items-center justify-content-center">
+        <img src="{% static 'logo/logo3.jpg' %}" alt="logo"
+            class="img-fluid mb-3" style="max-width: 180px;">
+        <h1 class="display-4 ms-3" style="font-family: 'Lobster';">Arte
+            da Bete</h1>
+    </div>
+</div>
+
+<style>
+    .nav-link:hover {
+        color: yellow !important; /* Define a cor amarela ao passar o mouse */
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand nav-link fs-3" href="/" style="color: white;">Home</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link fs-3 " href="/sobre" style="color:rgb(252, 248, 250);">Sobre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-3" href="/contato" style="color: rgb(252, 244, 249);">Contato</a>
+                </li>
+                <li>
+                    <a class="nav-link fs-3" href="/produtos" style="color: rgb(252, 244, 249);">Produtos</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cadastro' %}">Cadastrar</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% for message in messages %}
+            <div class="alert alert-primary">
+                <p id="messages">{{ message }}</p>
             </div>
+            {% endfor %}
         </div>
-    </nav>
+    </div>
+</nav>
 
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
-    {% bootstrap_javascript %}
+{% bootstrap_javascript %}
+<script>
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var query = document.getElementById('search-input').value;
+        fetch(`/buscar/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                // Aqui você pode atualizar a página com os resultados da busca
+                console.log(data);
+            })
+            .catch(error => console.error('Erro ao buscar produtos:', error));
+    });
+</script>
+
 </body>
 </html>

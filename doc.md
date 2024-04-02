@@ -9,8 +9,8 @@
 
 5- Criar projeto -> django-admin startproject setup .
 
-6- criar aplicativo -> python manage.py startapp nomeapp
-
+6- criar aplicativo -> python manage.py startapp usuarios
+python manage.py startapp usuarios
 (adiconar app em settings.py)
 
 7- Rodar o projeto -> python manage.py runserver

@@ -3,6 +3,8 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 
+
+
 class Cliente(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nome_completo = models.CharField(max_length=200)

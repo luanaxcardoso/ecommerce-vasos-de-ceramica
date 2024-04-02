@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
-<title>{% block title%}Contato{% endblock%}</title>
+{% load bootstrap5 %}
+{% load static %}
+{% block title %}
+    Contato
+{% endblock %}
 {% block content %}
 
-<div class="container mt-4">
-    <h1>CONTATO</h1>
+<div class="container mt-3 mb-5">
+    <div class="d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title text-muted display-4 mb-4">Entre em contato</h1>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="{% static 'image/01.jpeg' %}" alt="vaso" class="img-fluid rounded mb-4" style="max-width: 30%;">
+                    </div>
+                    <div class="col-md-6">
+                        <div style="font-family: Lobster;">
+                            <ul class="list-unstyled" style="font-size: 30px;">
+                                <li style="margin-bottom: 10px;"><strong>📧 Email:</strong> bernadete@gmail.com</li>
+                                <li style="margin-bottom: 10px;"><strong>📞 Telefone:</strong> (12) 99999-9999</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 {% endblock %}
